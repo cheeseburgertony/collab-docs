@@ -1,14 +1,11 @@
-import { Button } from '@/components/ui/button'
-import React, { memo } from 'react'
+import { Button } from "@/components/ui/button";
 
-const Home = memo(() => {
+const Home = () => {
   return (
-    <div className='flex min-h-screen items-center justify-center bg-cyan-400'>
-      <Button variant='destructive' >Click Me</Button>
+    <div className="flex min-h-screen items-center justify-center bg-cyan-400">
+      <Button variant="destructive">Click Me</Button>
     </div>
-  )
-})
+  );
+};
 
-Home.displayName = 'Home'
-
-export default Home
+export default Home;
