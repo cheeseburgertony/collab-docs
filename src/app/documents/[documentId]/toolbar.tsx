@@ -1,8 +1,11 @@
 "use client";
 
+import { type ColorResult, SketchPicker } from "react-color";
+import { type Level } from "@tiptap/extension-heading";
 import {
   BoldIcon,
   ChevronDownIcon,
+  HighlighterIcon,
   ItalicIcon,
   ListTodoIcon,
   LucideIcon,
@@ -14,7 +17,6 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { type Level } from "@tiptap/extension-heading";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -109,17 +111,70 @@ const HeadingLevelButton = () => {
                 editor?.isActive("heading", { level: value })) &&
                 "bg-neutral-200/80"
             )}
-            onClick={()=>{
-              if(value === 0){
+            onClick={() => {
+              if (value === 0) {
                 editor?.chain().focus().setParagraph().run();
-              }else{
-                editor?.chain().focus().setHeading({level: value as Level}).run();
+              } else {
+                editor
+                  ?.chain()
+                  .focus()
+                  .setHeading({ level: value as Level })
+                  .run();
               }
             }}
           >
             {label}
           </button>
         ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+// 文本颜色按钮
+const TextColorButton = () => {
+  const { editor } = useEditorStore();
+
+  const value = editor?.getAttributes("textStyle").color || "#000000";
+
+  const onChange = (color: ColorResult) => {
+    editor?.chain().focus().setColor(color.hex).run();
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+          <span className="text-xs">A</span>
+          <div className="h-0.5 w-full" style={{ backgroundColor: value }} />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="p-0">
+        <SketchPicker color={value} onChange={onChange} />
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+// 文本高亮按钮
+const HighlightColorButton = () => {
+  const { editor } = useEditorStore();
+
+  const value = editor?.getAttributes("highlight").color || "#FFFFFF";
+
+  const onChange = (color: ColorResult) => {
+    editor?.chain().focus().setHighlight({ color: color.hex }).run();
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+          <HighlighterIcon className="size-4" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="p-0">
+        <SketchPicker color={value} onChange={onChange} />
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -242,8 +297,8 @@ export const Toolbar = () => {
       {sections[1].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
-      {/* TODO: 文本颜色 */}
-      {/* TODO: 文本高亮颜色 */}
+      <TextColorButton />
+      <HighlightColorButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-200" />
       {/* TODO: 链接 */}
       {/* TODO: 图片 */}
