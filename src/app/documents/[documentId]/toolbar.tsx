@@ -4,12 +4,18 @@ import { useState } from "react";
 import { type ColorResult, SketchPicker } from "react-color";
 import { type Level } from "@tiptap/extension-heading";
 import {
+  AlignCenterIcon,
+  AlignJustifyIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
   BoldIcon,
   ChevronDownIcon,
   HighlighterIcon,
   ImageIcon,
   ItalicIcon,
   Link2Icon,
+  ListIcon,
+  ListOrderedIcon,
   ListTodoIcon,
   LucideIcon,
   MessageSquarePlusIcon,
@@ -284,17 +290,17 @@ const ImageButton = () => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog  open={isDialogOpen}>
+      <Dialog open={isDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Insert image URL</DialogTitle>
           </DialogHeader>
-          <Input 
+          <Input
             placeholder="Insert image URL"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            onKeyDown={(e)=>{
-              if(e.key === "Enter"){
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
                 handleImageUrlSubmit();
               }
             }}
@@ -305,6 +311,104 @@ const ImageButton = () => {
         </DialogContent>
       </Dialog>
     </>
+  );
+};
+
+// 对齐按钮
+const AlignButton = () => {
+  const { editor } = useEditorStore();
+
+  const alignments = [
+    {
+      label: "Align Left", // 左对齐
+      value: "left",
+      icon: AlignLeftIcon,
+    },
+    {
+      label: "Align Right", // 右对齐
+      value: "right",
+      icon: AlignRightIcon,
+    },
+    {
+      label: "Align Center", // 居中对齐
+      value: "center",
+      icon: AlignCenterIcon,
+    },
+    {
+      label: "Align Justify", // 两端对齐
+      value: "justify",
+      icon: AlignJustifyIcon,
+    },
+  ];
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+          <AlignLeftIcon className="size-4" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+        {alignments.map(({ label, value, icon: Icon }) => (
+          <button
+            key={value}
+            className={cn(
+              "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80",
+              editor?.isActive({ textAlign: value }) && "bg-neutral-200/80"
+            )}
+            onClick={() => editor?.chain().focus().setTextAlign(value).run()}
+          >
+            <Icon className="size-4" />
+            <span className="text-sm">{label}</span>
+          </button>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+// 列表按钮
+const ListButton = () => {
+  const { editor } = useEditorStore();
+
+  const lists = [
+    {
+      label: "Bullet List", // 无序列表
+      icon: ListIcon,
+      isActive: editor?.isActive("bulletList"),
+      onClick: () => editor?.chain().focus().toggleBulletList().run(),
+    },
+    {
+      label: "Ordered List", // 有序列表
+      icon: ListOrderedIcon,
+      isActive: editor?.isActive("orderedList"),
+      onClick: () => editor?.chain().focus().toggleOrderedList().run(),
+    },
+  ];
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+          <ListIcon className="size-4" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+        {lists.map(({ label, icon: Icon, isActive, onClick }) => (
+          <button
+            key={label}
+            className={cn(
+              "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80",
+              isActive && "bg-neutral-200/80"
+            )}
+            onClick={onClick}
+          >
+            <Icon className="size-4" />
+            <span className="text-sm">{label}</span>
+          </button>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
@@ -430,9 +534,9 @@ export const Toolbar = () => {
       <Separator orientation="vertical" className="h-6 bg-neutral-200" />
       <LinkButton />
       <ImageButton />
-      {/* TODO: 排列 */}
+      <AlignButton />
       {/* TODO: 行高 */}
-      {/* TODO: 列表 */}
+      <ListButton />
       {sections[2].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
