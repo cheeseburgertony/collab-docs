@@ -21,11 +21,13 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import { useEditorStore } from "@/store/use-editor-store";
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
+import { Ruler } from "./ruler";
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
+    immediatelyRender: false,
     // 通过store将editor传递给其他组件，让其通过editor进行工具栏的操作
     onCreate({ editor }) {
       setEditor(editor);
@@ -104,6 +106,7 @@ export const Editor = () => {
 
   return (
     <div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 mx-auto print:py-0 print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>
