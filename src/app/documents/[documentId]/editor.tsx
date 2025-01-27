@@ -15,10 +15,12 @@ import FontFamily from "@tiptap/extension-font-family";
 import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
-import TextAlign from '@tiptap/extension-text-align'
+import TextAlign from "@tiptap/extension-text-align";
 import { useEditor, EditorContent } from "@tiptap/react";
+
 import { useEditorStore } from "@/store/use-editor-store";
 import { FontSizeExtension } from "@/extensions/font-size";
+import { LineHeightExtension } from "@/extensions/line-height";
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -77,9 +79,10 @@ export const Editor = () => {
         defaultProtocol: "https",
       }),
       TextAlign.configure({
-        types: ['heading', 'paragraph'],
+        types: ["heading", "paragraph"],
       }),
       FontSizeExtension,
+      LineHeightExtension,
     ],
     content: `
         <table>
