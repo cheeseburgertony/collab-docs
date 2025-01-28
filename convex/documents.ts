@@ -32,3 +32,55 @@ export const get = query({
     return await ctx.db.query("documents").paginate(args.paginationOpts);
   },
 });
+
+// 根据 ID 删除文档
+export const removeById = mutation({
+  args: { id: v.id("documents") },
+  handler: async (ctx, args) => {
+    const user = await ctx.auth.getUserIdentity();
+
+    if (!user) {
+      throw new ConvexError("Unauthorized");
+    }
+
+    const document = await ctx.db.get(args.id);
+
+    if (!document) {
+      throw new ConvexError("Document not found");
+    }
+
+    const isOwner = document.ownerId === user.subject;
+
+    if (!isOwner) {
+      throw new ConvexError("Unauthorized");
+    }
+
+    return await ctx.db.delete(args.id);
+  },
+});
+
+// 根据 ID 更新文档
+export const updateById = mutation({
+  args: { id: v.id("documents"), title: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.auth.getUserIdentity();
+
+    if (!user) {
+      throw new ConvexError("Unauthorized");
+    }
+
+    const document = await ctx.db.get(args.id);
+
+    if (!document) {
+      throw new ConvexError("Document not found");
+    }
+
+    const isOwner = document.ownerId === user.subject;
+
+    if (!isOwner) {
+      throw new ConvexError("Unauthorized");
+    }
+
+    return await ctx.db.patch(args.id, { title: args.title });
+  },
+});
