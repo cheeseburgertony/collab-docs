@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
@@ -25,8 +26,10 @@ export const TemplatesGallery = () => {
     setIsCreating(true);
     create({ title, initialContent })
       .then((documentId) => {
+        toast.success("Document created");
         router.push(`/documents/${documentId}`);
       })
+      .catch(() => toast.error("Something went wrong"))
       .finally(() => {
         setIsCreating(false);
       });
