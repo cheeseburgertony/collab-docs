@@ -41,7 +41,8 @@ export async function POST(req: Request) {
   // 通过prepareSession方法为用户创建一个会话，并且为会话设置用户信息
   const session = liveblocks.prepareSession(user.id, {
     userInfo: {
-      name: user.fullName || "Anonymous",
+      name:
+        user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
       avatar: user.imageUrl,
     },
   });
