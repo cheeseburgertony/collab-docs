@@ -39,6 +39,7 @@ import { BsFilePdf } from "react-icons/bs";
 import { useEditorStore } from "@/store/use-editor-store";
 import { DocumentInput } from "./document-input";
 import { Avatars } from "./avatar";
+import { Inbox } from "./inbox";
 
 export const NavBar = () => {
   const { editor } = useEditorStore();
@@ -261,6 +262,7 @@ export const NavBar = () => {
       </div>
       <div className="flex items-center gap-3 pl-6">
         <Avatars />
+        <Inbox />
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"
