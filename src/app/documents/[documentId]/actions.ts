@@ -8,7 +8,7 @@ import { api } from "../../../../convex/_generated/api";
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
-export async function getUser() {
+export async function getUsers() {
   const { sessionClaims } = await auth();
   const clerk = await clerkClient();
 

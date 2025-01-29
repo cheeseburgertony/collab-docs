@@ -9,7 +9,7 @@ import {
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 
-import { getDocuments, getUser } from "./actions";
+import { getDocuments, getUsers } from "./actions";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { FullscreenLoader } from "@/components/fullscreen-loader";
 import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
@@ -24,7 +24,7 @@ export function Room({ children }: { children: ReactNode }) {
   const fetchUsers = useMemo(
     () => async () => {
       try {
-        const list = await getUser();
+        const list = await getUsers();
         setUsers(list);
       } catch {
         toast.error("Failed to fetch users");
