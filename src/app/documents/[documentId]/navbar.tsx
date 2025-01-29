@@ -40,8 +40,13 @@ import { useEditorStore } from "@/store/use-editor-store";
 import { DocumentInput } from "./document-input";
 import { Avatars } from "./avatar";
 import { Inbox } from "./inbox";
+import { Doc } from "../../../../convex/_generated/dataModel";
 
-export const NavBar = () => {
+interface NavBarProps {
+  data: Doc<"documents">;
+}
+
+export const NavBar = ({ data }: NavBarProps) => {
   const { editor } = useEditorStore();
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -67,7 +72,7 @@ export const NavBar = () => {
     const blob = new Blob([JSON.stringify(content)], {
       type: "application/json",
     });
-    onDownload(blob, `document.json`);
+    onDownload(blob, `${data.title}.json`);
   };
 
   const onSaveHTML = () => {
@@ -77,7 +82,7 @@ export const NavBar = () => {
     const blob = new Blob([content], {
       type: "text/html",
     });
-    onDownload(blob, `document.html`);
+    onDownload(blob, `${data.title}.html`);
   };
 
   const onSaveText = () => {
@@ -87,7 +92,7 @@ export const NavBar = () => {
     const blob = new Blob([content], {
       type: "text/plain",
     });
-    onDownload(blob, `document.txt`);
+    onDownload(blob, `${data.title}.txt`);
   };
 
   return (
@@ -97,7 +102,7 @@ export const NavBar = () => {
           <Image src="/logo.svg" width={36} height={36} alt="Logo" />
         </Link>
         <div className="flex flex-col">
-          <DocumentInput />
+          <DocumentInput title={data.title} id={data._id}/>
           <div className="flex">
             <Menubar className="border-none bg-transparent shadow-none h-auto p-0">
               <MenubarMenu>
