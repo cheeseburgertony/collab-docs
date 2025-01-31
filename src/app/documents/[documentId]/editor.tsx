@@ -32,8 +32,10 @@ interface EditorProps {
 }
 
 export const Editor = ({ initialContent }: EditorProps) => {
-  const leftMargin = useStorage((root) => root.leftMargin)?? LEFT_MARGIN_DEFAULT;
-  const rightMargin = useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT;
+  const leftMargin =
+    useStorage((root) => root.leftMargin) ?? LEFT_MARGIN_DEFAULT;
+  const rightMargin =
+    useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT;
 
   const liveblocks = useLiveblocksExtension({
     initialContent,
@@ -42,6 +44,7 @@ export const Editor = ({ initialContent }: EditorProps) => {
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
+    autofocus: true,
     immediatelyRender: false,
     // 通过store将editor传递给其他组件，让其通过editor进行工具栏的操作
     onCreate({ editor }) {
