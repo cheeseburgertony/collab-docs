@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Collab Docs
 
-## Getting Started
+一个基于 Next.js 构建的实时协作文档编辑平台，支持多人同时编辑、评论和实时预览。
 
-First, run the development server:
+## 功能特性
+
+- 📝 实时协作文档编辑
+- 👥 多人同时在线编辑
+- 💬 文档评论和讨论
+- 📊 丰富的文档模板
+- 🔍 文档搜索功能
+- 👤 用户身份验证
+- 🏢 组织和团队管理
+- 📱 响应式设计
+
+## 技术栈
+
+- **Frontend**: Next.js , React, TypeScript
+- **Backend**: Convex
+- **实时协作**: Liveblocks
+- **认证**: Clerk
+- **样式**: Tailwind CSS, shadcn/ui
+- **编辑器**: Tiptap
+- **部署**: Vercel
+
+## 开始使用
+
+1. 克隆项目
+
+```bash
+git clone https://github.com/cheeseburgertony/collab-docs.git
+cd collab-docs
+```
+
+2. 安装依赖
+
+```bash
+npm install --legacy-peer-deps
+```
+
+3. 环境变量配置
+
+```env
+创建 `.env.local` 文件并配置以下环境变量:
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+LIVEBLOCKS_SECRET_KEY=
+```
+
+4. 启动开发服务器
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx convex dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. 打开浏览器访问 [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 项目结构
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+collab-docs/
+├── src/
+│ ├── app/ # Next.js 13 App Router
+│ ├── components/ # 可复用组件
+│ ├── hooks/ # 自定义 Hooks
+│ └── lib/ # 工具函数和配置
+├── convex/ # Convex 后端配置和函数
+├── public/ # 静态资源
+└── ...配置文件
 
-## Learn More
+## 主要功能
 
-To learn more about Next.js, take a look at the following resources:
+- 文档编辑
+  - 富文本编辑
+  - 实时协作
+  - 文档历史记录
+  - 评论和讨论
+- 文档管理
+  - 创建和删除
+  - 模板选择
+  - 搜索和过滤
+- 团队协作
+  - 组织管理
+  - 成员权限
+  - 实时状态同步
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 部署
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+项目可以轻松部署到 Vercel 平台:
 
-## Deploy on Vercel
+1. Fork 本项目
+2. 在 Vercel 中导入项目
+3. 配置环境变量
+4. 部署
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 体验地址
+[collab-docs](https://collab-docs-theta.vercel.app/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 贡献
+
+欢迎提交 Pull Request 和 Issue！
+
+## 许可证
+
+MIT License
