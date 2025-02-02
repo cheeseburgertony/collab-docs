@@ -1,3 +1,9 @@
+<div >
+  <a href="#chinese">中文</a> | <a href="#english">English</a>
+</div>
+
+<div id="chinese">
+
 # Collab Docs
 
 一个基于 Next.js 构建的实时协作文档编辑平台，支持多人同时编辑、评论和实时预览。
@@ -40,8 +46,9 @@ npm install --legacy-peer-deps
 
 3. 环境变量配置
 
-```env
 创建 `.env.local` 文件并配置以下环境变量:
+
+```env
 CONVEX_DEPLOYMENT=
 NEXT_PUBLIC_CONVEX_URL=
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
@@ -49,7 +56,7 @@ CLERK_SECRET_KEY=
 LIVEBLOCKS_SECRET_KEY=
 ```
 
-4. 启动开发服务器
+1. 启动开发服务器
 
 ```bash
 npm run dev
@@ -96,6 +103,7 @@ collab-docs/
 4. 部署
 
 ## 体验地址
+
 [collab-docs](https://collab-docs-theta.vercel.app/)
 
 ## 贡献
@@ -105,3 +113,119 @@ collab-docs/
 ## 许可证
 
 MIT License
+
+</div>
+
+<div id="english">
+
+# Collab Docs
+
+A real-time collaborative document editing platform built with Next.js, supporting multi-user editing, commenting, and real-time preview.
+
+## Features
+
+- 📝 Real-time collaborative document editing
+- 👥 Multi-user simultaneous editing
+- 💬 Document comments and discussions
+- 📊 Rich document templates
+- 🔍 Document search functionality
+- 👤 User authentication
+- 🏢 Organization and team management
+- 📱 Responsive design
+
+## Tech Stack
+
+- **Frontend**: Next.js, React, TypeScript
+- **Backend**: Convex
+- **Real-time Collaboration**: Liveblocks
+- **Authentication**: Clerk
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Editor**: Tiptap
+- **Deployment**: Vercel
+
+## Getting Started
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/cheeseburgertony/collab-docs.git
+cd collab-docs
+```
+
+2. Install dependencies
+
+```bash
+npm install --legacy-peer-deps
+```
+
+3. Environment Variables Configuration
+
+Create a `.env.local` file and configure the following environment variables:
+
+```env
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+LIVEBLOCKS_SECRET_KEY=
+```
+
+1. Start the development server
+
+```bash
+npm run dev
+npx convex dev
+```
+
+5. Open your browser and visit [http://localhost:3000](http://localhost:3000)
+
+## Project Structure
+
+collab-docs/
+├── src/
+│ ├── app/ # Next.js 13 App Router
+│ ├── components/ # Reusable components
+│ ├── hooks/ # Custom Hooks
+│ └── lib/ # Utility functions and configurations
+├── convex/ # Convex backend configurations and functions
+├── public/ # Static assets
+└── ...configuration files
+
+## Key Features
+
+- Document Editing
+  - Rich text editing
+  - Real-time collaboration
+  - Document history
+  - Comments and discussions
+- Document Management
+  - Create and delete
+  - Template selection
+  - Search and filter
+- Team Collaboration
+  - Organization management
+  - Member permissions
+  - Real-time status synchronization
+
+## Deployment
+
+The project can be easily deployed to the Vercel platform:
+
+1. Fork this project
+2. Import the project in Vercel
+3. Configure environment variables
+4. Deploy
+
+## Demo
+
+[collab-docs](https://collab-docs-theta.vercel.app/)
+
+## Contributing
+
+Pull requests and issues are welcome!
+
+## License
+
+MIT License
+
+</div>
