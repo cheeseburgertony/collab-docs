@@ -56,7 +56,7 @@ CLERK_SECRET_KEY=
 LIVEBLOCKS_SECRET_KEY=
 ```
 
-1. 启动开发服务器
+4. 启动开发服务器
 
 ```bash
 npm run dev
@@ -67,15 +67,17 @@ npx convex dev
 
 ## 项目结构
 
+```bash
 collab-docs/
 ├── src/
-│ ├── app/ # Next.js 13 App Router
+│ ├── app/ # Next.js App Router
 │ ├── components/ # 可复用组件
 │ ├── hooks/ # 自定义 Hooks
 │ └── lib/ # 工具函数和配置
 ├── convex/ # Convex 后端配置和函数
 ├── public/ # 静态资源
 └── ...配置文件
+```
 
 ## 主要功能
 
@@ -170,7 +172,7 @@ CLERK_SECRET_KEY=
 LIVEBLOCKS_SECRET_KEY=
 ```
 
-1. Start the development server
+4. Start the development server
 
 ```bash
 npm run dev
@@ -181,15 +183,17 @@ npx convex dev
 
 ## Project Structure
 
+```bash
 collab-docs/
 ├── src/
-│ ├── app/ # Next.js 13 App Router
+│ ├── app/ # Next.js App Router
 │ ├── components/ # Reusable components
 │ ├── hooks/ # Custom Hooks
 │ └── lib/ # Utility functions and configurations
 ├── convex/ # Convex backend configurations and functions
 ├── public/ # Static assets
 └── ...configuration files
+```
 
 ## Key Features
 
